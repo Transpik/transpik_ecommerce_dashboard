@@ -6,6 +6,7 @@ import Location from "../components/Location/Location";
 class Account extends React.Component {
   constructor(props) {
     super(props);
+    this.isRidirect = false;
   }
 
   render() {
@@ -17,6 +18,7 @@ class Account extends React.Component {
         />
         <Location />
         <Outlet />
+        
     </div>);
   }
 }

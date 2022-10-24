@@ -23,7 +23,7 @@ class Profile extends React.Component {
           <input type={"text"} value={"sample@gmail.com"} disabled className="text-dark-gray w-[550px] h-12 pl-4 pr-4 pt-1 pb-1 border border-solid border-input-stroke outline-orange text-base placeholder:font-light placeholder:font-roboto placeholder:text-light-gray rounded-lg"></input>
         </div>
         <div className="mb-6">
-          <div className="text-lg mb-4">Password</div>
+          <div className="text-lg mb-4 ml-4">Password</div>
           <form onSubmit={this.onPasswordChange}>
             <div className="w-full flex justify-between items-center">
               <input type={"password"} placeholder="Type your current password" className="text-dark-gray w-[550px] h-12 pl-4 pr-4 pt-1 pb-1 border border-solid border-input-stroke outline-orange text-base placeholder:font-light placeholder:font-roboto placeholder:text-light-gray rounded-lg"></input>

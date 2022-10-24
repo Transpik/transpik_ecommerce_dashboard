@@ -46,13 +46,13 @@ class ConfigServices extends React.Component {
               !this.state.service ? <div>Please select a service</div> :
               <div className="w-full font-roboto text-dark-gray">
                 <h2 className="text-2xl font-normal mb-6">{`Config ${this.state.service} Service`}</h2>
-                <p className="text-sm text-green bg-light-green p-2 border border-solid border-green rounded-lg">
+                <p className="text-sm text-green bg-light-green p-2 border border-solid border-green rounded-lg mb-4">
                   Follwing list show down available service locations which are currently supporting
                   by the {this.state.service}.
                 </p>
-                <div className="w-full mt-4">
+                <div className="w-full">
                   <table className="table-auto w-full">
-                    {this.pricingList.map(item => <tr className="h-12 hover:bg-light-orange hover:border hover:border-solid hover:border-secondary-orange cursor-pointer">
+                    {this.pricingList.map(item => <tr className="h-12 hover:bg-light-orange hover:border hover:border-solid hover:border-secondary-orange cursor-pointer box-content">
                       <td><input className="cursor-pointer" type={"checkbox"}></input></td>
                       <td>{item.state}</td>
                       <td>{item.charge}</td>

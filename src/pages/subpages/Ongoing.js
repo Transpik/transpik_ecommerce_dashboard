@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 
-//temp
 const accessToken = window.localStorage.getItem('accessToken');
 
 class Ongoing extends React.Component {
@@ -16,7 +15,7 @@ class Ongoing extends React.Component {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              'Access-Token': accessToken
+              'Access-Token': window.localStorage.getItem('accessToken')
             },
             url: 'http://localhost:8080/orders/ongoing',
             mode: 'cors',

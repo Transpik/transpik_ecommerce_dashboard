@@ -19,7 +19,7 @@ import Completed from "./pages/subpages/Completed";
 
 import axios from "axios";
 
-/*const params = new URLSearchParams(window.location.search)
+const params = new URLSearchParams(window.location.search)
 if(!params.has('auth')) window.location.href = 'https://transpikland.onrender.com/login';
 
 const refreshToken = params.get('auth'); 
@@ -36,7 +36,7 @@ axios({
   if(response.status == 200) {
 
     window.localStorage.setItem('refreshToken', response.data.data.refreshToken);
-    window.localStorage.setItem('accessToken', response.data.data.accessToken);*/
+    window.localStorage.setItem('accessToken', response.data.data.accessToken);
 
     ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
@@ -62,9 +62,9 @@ axios({
           </Route>
         </Routes>
       </BrowserRouter>);
-  /*}
+  }
 }).catch((error) => {
   if(error.response) {
     alert(error.response.data.message);
   }
-});*/
+});

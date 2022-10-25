@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 //temp
-const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY2NzYzMDcsImV4cCI6MTY2Njg0OTEwNywiYXVkIjoiZWNvbW1lcmNlIiwiaXNzIjoiaHR0cHM6Ly90cmFuc3Bpa2FwaS5vbnJlbmRlci5jb20iLCJzdWIiOiI2MzU3NzYzY2JmYzExZWNkNjVhYTY3MWQifQ.Ep75c19AKC4Ck2dXv6VmKqGdRUYrB1AvMNkf981WS5A';
+const accessToken = window.localStorage.getItem('accessToken');
 
 class Profile extends React.Component {
   constructor(props) {

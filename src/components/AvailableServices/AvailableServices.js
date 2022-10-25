@@ -10,7 +10,7 @@ class AvailableServices extends React.Component {
   render() {
     return (
       <div className="text-dark-gray font-roboto">
-        <div className="text-lg mb-4 ml-4">Assign States To Services</div>
+        <div className="text-lg mb-4 ml-4">Currently Using Delivery Services</div>
         <div>
           <Service 
             serviceName={"Anton Delivery Service"}

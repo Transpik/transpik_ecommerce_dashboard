@@ -3,10 +3,15 @@ import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup';
 import Service from "../Service/Service";
 
+import axios from "axios";
+
+const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY2OTcyNDYsImV4cCI6MTY2Njg3MDA0NiwiYXVkIjoiZGVsaXZlcnkiLCJpc3MiOiJodHRwczovL3RyYW5zcGlrYXBpLm9ucmVuZGVyLmNvbSIsInN1YiI6IjYzNTdjODAyZThkNzZhOWE3N2JiYmEyMCJ9.P3-RjEQG-nEF8yyy7-eoZUm0uxwylzOt1a8gdQyuNeM';
+
 class ConfigServices extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { service: null, serviceID: null };
+    this.getData = this.getData.bind(this);
+    this.state = { service: null, serviceID: null, services:[] };
     this.pricingList = [
       { state: "Radawana", charge: "Rs.250.00" },
       { state: "Gampaha", charge: "Rs.250.00"},
@@ -20,6 +25,57 @@ class ConfigServices extends React.Component {
       borderRadius: "8px",
       padding: "16px"
     }
+  }
+
+  async getData() {
+    let rawServices;
+    let response = await axios({
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Token': accessToken
+      },
+      url: 'http://localhost:8080/users/delivery_services/verified',
+      mode: 'cors',
+      withCredentials: true
+    });
+
+    if(response.status == 200) {
+      rawServices = response.data.data.services;
+    }else {
+      console.log(response.status);
+    }
+    let usingServices;
+    let services = [];
+
+    response = await axios({
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Token': accessToken
+      },
+      url: 'http://localhost:8080/users',
+      mode: 'cors',
+      withCredentials: true
+    });
+
+    if(response.status == 200) {
+      usingServices = response.data.data.user.using_services;
+      rawServices.forEach(service => {
+        if(usingServices.indexOf(service._id) < 0) {
+          services.push(service)
+        }
+        
+      })
+    }
+    return services;
+  }
+
+  componentDidMount() {
+    this.getData().then(services => this.setState({ services: services }, () => {
+      console.log(this.state.services[0].verification_data);
+    }));
+    console.log(this.state.services);
   }
 
   onChange(event) {
@@ -37,8 +93,9 @@ class ConfigServices extends React.Component {
         </div>
         <select onChange={this.onChange} className="pl-4 pr-4 pt-2 pb-2 w-56 h-12 border border-solid border-input-stroke outline-orange text-base rounded-lg">
           <option value={"None"}>None</option>  
-          <option value={"antonID"}>Anton</option>
-          <option value={"colzID"}>Colz API</option>
+          {
+            this.state.services.map(service => <option value={service.verification_data.business_name}>{service.verification_data.business_name}</option> )
+          }
         </select>
         <Popup trigger={<button className="ml-4 pl-4 pr-4 pt-1 pb-1 text-base text-white rounded-lg bg-green h-12">Config</button>} position="right center" modal contentStyle={this.contentStyle}>
           {

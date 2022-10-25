@@ -5,6 +5,7 @@ class Service extends React.Component {
     super(props);
     this.onExpand = this.onExpand.bind(this);
     this.state = { expand: false }
+    this.id = this.props.id;
   }
 
   onExpand(event) {
@@ -18,7 +19,9 @@ class Service extends React.Component {
         <div className="bg-light-orange border border-solid border-secondary-orange rounded-lg p-4 flex justify-between items-center">
           <div className="flex items-center">
             <div className="text-lg">{this.props.serviceName}</div>
-            <div className="bg-green pl-4 pr-4 pt-2 pb-2 rounded-lg text-white flex justify-center items-center ml-4 cursor-pointer">Add</div>
+            {
+              (this.props.isUsing) ? <div className="pl-4 bg-red-600 pr-4 pt-2 pb-2 rounded-lg text-white flex justify-center items-center ml-4 cursor-pointer">Delete</div> : <div className="bg-green pl-4 pr-4 pt-2 pb-2 rounded-lg text-white flex justify-center items-center ml-4 cursor-pointer">Add</div>
+            }
           </div>
           <div className="flex items-center">
             <div className="text-base text-orange underline cursor-pointer mr-9">Check Charges</div>

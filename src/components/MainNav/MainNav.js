@@ -12,6 +12,7 @@ class MainNav extends React.Component {
       "borderRadius": "8px",
       "fontWeight": "500"
     }
+    this.logout = this.logout.bind(this);
     this.navLinks = this.props.navs.map(link => <NavLink className="ml-16" to={`/${link.url}`} style={({isActive}) => isActive ? this.activeStyle : undefined } key={link.url}>{link.nav}</NavLink>)
   }
 
@@ -32,7 +33,7 @@ class MainNav extends React.Component {
           <ul className="mr-40">
             {this.navLinks}
           </ul>
-          <div className="underline cursor-pointer" onClick={logout}>Logout</div>
+          <div className="underline cursor-pointer" onClick={this.logout}>Logout</div>
         </div>
       </div>
     );

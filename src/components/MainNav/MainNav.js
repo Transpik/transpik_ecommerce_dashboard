@@ -12,7 +12,14 @@ class MainNav extends React.Component {
       "borderRadius": "8px",
       "fontWeight": "500"
     }
+    this.logout = this.logout.bind(this);
     this.navLinks = this.props.navs.map(link => <NavLink className="ml-16" to={`/${link.url}`} style={({isActive}) => isActive ? this.activeStyle : undefined } key={link.url}>{link.nav}</NavLink>)
+  }
+
+  logout() {
+    window.localStorage.removeItem('accessToken');
+    window.localStorage.removeItem('refreshToken');
+    window.location.href = 'https://transpikland.onrender.com';
   }
 
   render() {
@@ -20,13 +27,13 @@ class MainNav extends React.Component {
       <div className="flex justify-between items-center w-full text-secondary-white font-roboto">
         <div className="flex items-end">
           <h1 className="text-secondary-white text-3xl font-medium">{this.props.logoText || "Logo Text"}</h1>
-          <h2 className="text-secondary-white text-base ml-4">{this.props.companyName || "Unnamed Profile"}</h2>
+          
         </div>
         <div className="flex">
           <ul className="mr-40">
             {this.navLinks}
           </ul>
-          <div className="underline">Logout</div>
+          <div className="underline cursor-pointer" onClick={this.logout}>Logout</div>
         </div>
       </div>
     );

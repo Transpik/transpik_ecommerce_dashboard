@@ -32,7 +32,7 @@ class MainNav extends React.Component {
           <ul className="mr-40">
             {this.navLinks}
           </ul>
-          <div className="underline" onClick={logout}>Logout</div>
+          <div className="underline cursor-pointer" onClick={logout}>Logout</div>
         </div>
       </div>
     );

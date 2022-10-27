@@ -19,10 +19,16 @@ import Completed from "./pages/subpages/Completed";
 
 import axios from "axios";
 
-const params = new URLSearchParams(window.location.search)
-if(!params.has('auth')) window.location.href = 'https://transpikland.onrender.com/login';
+let refreshToken = window.localStorage.getItem('refeshToken');
+const params = new URLSearchParams(window.location.search);
 
-const refreshToken = params.get('auth'); 
+if(!refreshToken) {
+    if(!params.has('auth')) {
+      window.location.href = 'https://transpikland.onrender.com/login';
+    }else {
+      refreshToken = params.get('auth');
+    }
+} 
 
 axios({
   method: 'POST',

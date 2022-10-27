@@ -19,7 +19,7 @@ import Completed from "./pages/subpages/Completed";
 
 import axios from "axios";
 
-let refreshToken = window.localStorage.getItem('refeshToken');
+let refreshToken = window.localStorage.getItem('refreshToken');
 const params = new URLSearchParams(window.location.search);
 
 if(!refreshToken) {
